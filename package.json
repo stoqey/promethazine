@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/stoqey/promethazine/issues"
   },
-  "homepage": "https://github.com/stoqey/promethazine#readme"
+  "homepage": "https://github.com/stoqey/promethazine#readme",
+  "dependencies": {
+    "do-wrapper": "^4.1.2"
+  }
 }
