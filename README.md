@@ -1,6 +1,15 @@
-# Promethazine 👾
+<p align="center">
+   <h2>Promethazine 👾</h2>
+</p>
 
-Promethazine - Automate your Kubernetes on Digital Ocean
+<p align="center">
+    <img src="./docs/logo.png" width="300px"></img> 
+</p>
+
+<p align="center">
+   Promethazine 👾 - Automate your Kubernetes on Digital Ocean
+</p>
+
 
 #### Features
 - AutoScaling
