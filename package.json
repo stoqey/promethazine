@@ -1,0 +1,26 @@
+{
+  "name": "promethazine",
+  "version": "1.0.0",
+  "description": "Kubernetes Automation on DigitalOcean",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/stoqey/promethazine.git"
+  },
+  "keywords": [
+    "ai",
+    "automation",
+    "kubernetes",
+    "digital",
+    "ocean"
+  ],
+  "author": "Stoqey Inc <support@stoqey.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/stoqey/promethazine/issues"
+  },
+  "homepage": "https://github.com/stoqey/promethazine#readme"
+}

@@ -1,0 +1,9 @@
+.DS_Store
+dist
+build
+node_modules/
+.env
+files
+yarn-error.log
+*secrets.json*
+*secret.json*
