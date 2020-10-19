@@ -1,26 +1,18 @@
 import DigitalOcean from "do-wrapper";
 import isEmpty from 'lodash/isEmpty';
-import DO from "do-wrapper";
-import { log } from "../../../logs";
-
-/**
- * Digital Ocean client
- */
-export interface DigitalOceanClient {
-    [x: string]: any;
-    kubernetesClusterGetConfig: (clusterId: string) => Promise<any>
-}
+import {log, verbose} from '../../logs';
 
 /**
  * Create the digital ocean client
  * @param DO_TOKEN 
  */
-export const createDigitalOceanClient = (DO_TOKEN: string): DigitalOceanClient => {
+export const createDigitalOceanClient = (DO_TOKEN: string): DigitalOcean => {
     try{
         if(isEmpty(DO_TOKEN)){
             throw new Error('Digital ocean cannot be empty, please see https://www.digitalocean.com/docs/apis-clis/api/create-personal-access-token/')
         }
-        const doClient: DigitalOceanClient = new DO(DO_TOKEN) as unknown as DigitalOceanClient;
+        const doClient: DigitalOcean = new DigitalOcean(DO_TOKEN);
+        verbose('success getting do client');
         return doClient;
     }
     catch(error){
@@ -35,10 +27,9 @@ export const createDigitalOceanClient = (DO_TOKEN: string): DigitalOceanClient =
  * @param clusterId 
  * @param DO_TOKEN 
  */
-export const getK8sClusterConfig = async (clusterId: string, DigitalOceanClient: any): Promise<string> => {
+export const getK8sClusterConfig = async (clusterId: string, DigitalOceanClient: DigitalOcean): Promise<string> => {
     try {
-        // @ts-ignore
-        const api = await DigitalOceanClient.kubernetesClusterGetConfig(clusterId);
+        const api = await DigitalOceanClient.kubernetes.getKubeconfig(clusterId);
         if (api.response && api.response.statusCode === 200) {
             return api.body;
         };
