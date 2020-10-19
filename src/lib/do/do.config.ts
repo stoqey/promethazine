@@ -13,14 +13,14 @@ export interface DigitalOceanClient {
 
 /**
  * Create the digital ocean client
- * @param DO_KEY 
+ * @param DO_TOKEN 
  */
-export const createDigitalOceanClient = (DO_KEY: string): DigitalOceanClient => {
+export const createDigitalOceanClient = (DO_TOKEN: string): DigitalOceanClient => {
     try{
-        if(isEmpty(DO_KEY)){
+        if(isEmpty(DO_TOKEN)){
             throw new Error('Digital ocean cannot be empty, please see https://www.digitalocean.com/docs/apis-clis/api/create-personal-access-token/')
         }
-        const doClient: DigitalOceanClient = new DO(DO_KEY) as unknown as DigitalOceanClient;
+        const doClient: DigitalOceanClient = new DO(DO_TOKEN) as unknown as DigitalOceanClient;
         return doClient;
     }
     catch(error){
@@ -33,7 +33,7 @@ export const createDigitalOceanClient = (DO_KEY: string): DigitalOceanClient => 
 /**
  * Get kubernetes configuration from Digital Ocean
  * @param clusterId 
- * @param DO_KEY 
+ * @param DO_TOKEN 
  */
 export const getK8sClusterConfig = async (clusterId: string, DigitalOceanClient: any): Promise<string> => {
     try {

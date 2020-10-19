@@ -2,15 +2,14 @@ import { expect } from 'chai';
 import 'mocha';
 import { createDigitalOceanClient, DigitalOceanClient } from './do.config';
 
-const DO_KEY  = process.env.DO_KEY;
+const DO_TOKEN  = process.env.DO_TOKEN;
 
 let digitalOceanClient: DigitalOceanClient = null;
 
 describe('Digital Ocean', () =>  {
 
     it('should create DO client', async () => {
-        digitalOceanClient  = createDigitalOceanClient(DO_KEY);
-        console.log('DO client is', Object.keys(digitalOceanClient));
+        digitalOceanClient  = createDigitalOceanClient(DO_TOKEN);
         expect(digitalOceanClient).to.be.exist;
     })
 })

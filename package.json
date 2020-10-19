@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "do": "mocha src/lib/do/*test.ts --full-trace"
+    "do": "source .env && mocha src/lib/do/*test.ts --full-trace"
   },
   "repository": {
     "type": "git",

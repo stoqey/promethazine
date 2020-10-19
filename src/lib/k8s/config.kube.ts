@@ -6,13 +6,13 @@ import { getK8sClusterConfig } from "../do";
 /**
  * Load kubernetes configurations from digital ocean
  * @param clusterId
- * @param DO_KEY
+ * @param DO_TOKEN
  */
 export const loadKubernetesConfigurationFromDO = async (
   clusterId: string,
-  DO_KEY: string
+  DO_TOKEN: string
 ): Promise<KubeConfig> => {
-  const DigitalOcean = new DO(DO_KEY);
+  const DigitalOcean = new DO(DO_TOKEN);
 
   const k8config = await getK8sClusterConfig(clusterId, DigitalOcean);
   const kc = new k8s.KubeConfig();
