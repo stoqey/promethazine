@@ -1,5 +1,7 @@
 import DigitalOcean from "do-wrapper";
+import isEmpty from 'lodash/isEmpty';
 import DO from "do-wrapper";
+import { log } from "../../../logs";
 
 /**
  * Digital Ocean client
@@ -14,8 +16,18 @@ export interface DigitalOceanClient {
  * @param DO_KEY 
  */
 export const createDigitalOceanClient = (DO_KEY: string): DigitalOceanClient => {
-    const DigitalOcean: DigitalOceanClient = new DO(DO_KEY) as unknown as DigitalOceanClient;
-    return DigitalOcean;
+    try{
+        if(isEmpty(DO_KEY)){
+            throw new Error('Digital ocean cannot be empty, please see https://www.digitalocean.com/docs/apis-clis/api/create-personal-access-token/')
+        }
+        const doClient: DigitalOceanClient = new DO(DO_KEY) as unknown as DigitalOceanClient;
+        return doClient;
+    }
+    catch(error){
+        log('error', error.message);
+        return null;
+    }
+    
 }
 
 /**

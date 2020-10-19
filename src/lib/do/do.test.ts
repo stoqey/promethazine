@@ -10,6 +10,7 @@ describe('Digital Ocean', () =>  {
 
     it('should create DO client', async () => {
         digitalOceanClient  = createDigitalOceanClient(DO_KEY);
+        console.log('DO client is', Object.keys(digitalOceanClient));
         expect(digitalOceanClient).to.be.exist;
     })
 })
