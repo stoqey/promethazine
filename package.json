@@ -25,6 +25,7 @@
   "homepage": "https://github.com/stoqey/promethazine#readme",
   "dependencies": {
     "@kubernetes/client-node": "^0.12.2",
-    "do-wrapper": "^4.1.2"
+    "do-wrapper": "^4.1.2",
+    "dotenv": "^8.2.0"
   }
 }
