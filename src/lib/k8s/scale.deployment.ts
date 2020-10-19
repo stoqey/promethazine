@@ -4,6 +4,11 @@ interface Args {
     namespace: string; name: string; replicas: number;
 };
 
+/**
+ * Scale a deployment
+ * @param kc 
+ * @param args 
+ */
 export async function scaleDeployment(kc: KubeConfig, args: Args) {
 
     const { namespace, name, replicas} = args;
