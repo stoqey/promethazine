@@ -1,6 +1,6 @@
 {
-  "name": "promethazine",
-  "version": "1.0.0",
+  "name": "@stoqey/promethazine",
+  "version": "0.0.1",
   "description": "Kubernetes Automation on DigitalOcean",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
