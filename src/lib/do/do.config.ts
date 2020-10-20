@@ -3,7 +3,7 @@ import util from "util";
 import isEmpty from "lodash/isEmpty";
 import { log, verbose } from "../../logs";
 
-export const getKubernetesConfigUsingHTTP = async (
+export const getKubeConfigFromDOWithHTTP = async (
   token: string,
   clusterId: string
 ): Promise<string> => {
