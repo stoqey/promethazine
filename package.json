@@ -2,11 +2,27 @@
   "name": "promethazine",
   "version": "1.0.0",
   "description": "Kubernetes Automation on DigitalOcean",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "register/",
+    "LICENSE"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist && tsc",
     "do": "mocha src/lib/do/*test.ts --full-trace",
     "k8s": "mocha src/lib/k8s/*test.ts --full-trace"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "yarn eslint"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "repository": {
     "type": "git",
