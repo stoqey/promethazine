@@ -1,4 +1,5 @@
-import k8s, { KubeConfig } from "@kubernetes/client-node";
+import * as k8s from "@kubernetes/client-node";
+import { KubeConfig } from "@kubernetes/client-node";
 import { DO_TOKEN, CLUSTER_ID } from "../../config";
 import { log } from "../../logs";
 import { getKubernetesConfigUsingHTTP } from "../do";
@@ -15,7 +16,7 @@ export const loadKubernetesConfigurationFromDO = async (): Promise<
     kc.loadFromString(k8config);
     return kc;
   } catch (error) {
-    log("error loadKubernetesConfigurationFromDO", error);
+    console.log("error loadKubernetesConfigurationFromDO", error);
     return null;
   }
 };

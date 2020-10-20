@@ -1,2 +1,2 @@
-export * from './config.kube';
+export * from './k8s.config';
 export * from './scale.deployment';
