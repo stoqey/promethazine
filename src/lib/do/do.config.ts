@@ -1,7 +1,7 @@
 import request from 'request';
 import util from 'util';
 import isEmpty from 'lodash/isEmpty';
-import {log, verbose} from '../../logs';
+import {verbose} from '../../logs';
 
 export const getKubeConfigFromDOWithHTTP = async (
     token: string,
@@ -34,7 +34,7 @@ export const getKubeConfigFromDOWithHTTP = async (
         }
         throw new Error('error getting cluster kubeconfig from digital ocean');
     } catch (error) {
-        log('error getKubernetesConfigUsingHTTP', error);
+        console.log('error getKubernetesConfigUsingHTTP', error);
         return null;
     }
 };
