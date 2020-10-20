@@ -1,25 +1,18 @@
-import DigitalOcean from  'do-wrapper';
 import { expect } from 'chai';
 import 'mocha';
-import { createDigitalOceanClient, DigitalOceanClient } from './do.config';
-require('dotenv').config();
-
-
-const DO_TOKEN  = process.env.DO_TOKEN;
-
-let digitalOceanClient: DigitalOcean = null;
+import { getKubernetesConfigUsingHTTP } from './do.config';
+import {DO_TOKEN, CLUSTER_ID} from '../../config';
 
 describe('Digital Ocean Configuration', () =>  {
 
-    it('should not create DO client when is empty', async () => {
-        digitalOceanClient  = createDigitalOceanClient('');
-        expect(digitalOceanClient).to.be.null;
+    it('should return kubernetes cluster configuration when CLUSTER_ID and DO_TOKEN is present', async () => {
+        const kubeconfig  = await getKubernetesConfigUsingHTTP(DO_TOKEN, CLUSTER_ID);
+        console.log('kubernetes config', JSON.stringify(kubeconfig))
+        expect(kubeconfig).to.be.exist;
     })
 
-    it('should create DO client when token exists', async () => {
-        digitalOceanClient  = createDigitalOceanClient(DO_TOKEN);
-        expect(digitalOceanClient).to.be.exist;
+    it('should return not kubernetes cluster configuration when CLUSTER_ID and DO_TOKEN is empty', async () => {
+        const kubeconfig  = await getKubernetesConfigUsingHTTP('', '');
+        expect(kubeconfig).to.be.null;
     })
 })
-
-

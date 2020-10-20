@@ -1,42 +1,40 @@
-import DigitalOcean from "do-wrapper";
-import isEmpty from 'lodash/isEmpty';
-import {log, verbose} from '../../logs';
+import request from "request";
+import util from "util";
+import isEmpty from "lodash/isEmpty";
+import { log, verbose } from "../../logs";
 
-/**
- * Create the digital ocean client
- * @param DO_TOKEN 
- */
-export const createDigitalOceanClient = (DO_TOKEN: string): DigitalOcean => {
-    try{
-        if(isEmpty(DO_TOKEN)){
-            throw new Error('Digital ocean cannot be empty, please see https://www.digitalocean.com/docs/apis-clis/api/create-personal-access-token/')
-        }
-        const doClient: DigitalOcean = new DigitalOcean(DO_TOKEN);
-        verbose('success getting do client');
-        return doClient;
+export const getKubernetesConfigUsingHTTP = async (
+  token: string,
+  clusterId: string
+) => {
+  try {
+    // Check params
+    if (isEmpty(token)) {
+      throw new Error("error digital ocean token cannot be empty");
     }
-    catch(error){
-        log('error', error.message);
-        return null;
+    if (isEmpty(clusterId)) {
+      throw new Error("error digital ocean clusterId cannot be empty");
     }
-    
-}
 
-/**
- * Get kubernetes configuration from Digital Ocean
- * @param clusterId 
- * @param DO_TOKEN 
- */
-export const getK8sClusterConfig = async (clusterId: string, DigitalOceanClient: DigitalOcean): Promise<string> => {
-    try {
-        const api = await DigitalOceanClient.kubernetes.getKubeconfig(clusterId);
-        if (api.response && api.response.statusCode === 200) {
-            return api.body;
-        };
+    // Create request
+    const api = util.promisify(request.get);
+    const options: any = {
+      url: `https://api.digitalocean.com/v2/kubernetes/clusters/${clusterId}/kubeconfig`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
-        throw new Error("Error getting cluster");
+    // Run request
+    const response = await api(options);
+    if (response && response.statusCode === 200) {
+      verbose("successfully get kubeconfig");
+      return response.body;
     }
-    catch (error) {
-        return null;
-    }
-}
+    throw new Error("error getting cluster kubeconfig from digital ocean");
+  } catch (error) {
+    log("error getKubernetesConfigUsingHTTP", error);
+    return null;
+  }
+};
