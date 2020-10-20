@@ -6,7 +6,7 @@ import { log, verbose } from "../../logs";
 export const getKubernetesConfigUsingHTTP = async (
   token: string,
   clusterId: string
-) => {
+): Promise<string> => {
   try {
     // Check params
     if (isEmpty(token)) {
