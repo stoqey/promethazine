@@ -15,7 +15,8 @@
     "build": "rimraf dist && tsc",
     "do": "mocha src/lib/do/*test.ts --full-trace",
     "k8s": "mocha src/lib/k8s/*test.ts --full-trace",
-    "eslint": "eslint ./src --fix --ext=ts"
+    "eslint": "eslint ./src --fix --ext=ts",
+    "prepublishOnly": "npm run build"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
