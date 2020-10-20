@@ -12,7 +12,8 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "do": "mocha src/lib/do/*test.ts --full-trace",
-    "k8s": "mocha src/lib/k8s/*test.ts --full-trace"
+    "k8s": "mocha src/lib/k8s/*test.ts --full-trace",
+    "eslint": "eslint ./src --fix --ext=ts"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -33,7 +34,9 @@
     "automation",
     "kubernetes",
     "digital",
-    "ocean"
+    "ocean",
+    "stoqey",
+    "stoqey inc"
   ],
   "author": "Stoqey Inc <support@stoqey.com>",
   "license": "MIT",
