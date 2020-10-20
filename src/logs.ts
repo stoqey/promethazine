@@ -1,5 +1,5 @@
-import debug from "debug";
-import { APP_NAME } from "./config";
+import debug from 'debug';
+import {APP_NAME} from './config';
 
 const loggingPrefix = APP_NAME;
 
