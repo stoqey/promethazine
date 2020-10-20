@@ -1,5 +1,5 @@
-import k8s, {KubeConfig} from '@kubernetes/client-node';
-import {log} from '../../../logs';
+import * as k8s from '@kubernetes/client-node';
+import {KubeConfig} from '@kubernetes/client-node';
 
 interface Args {
     namespace: string;
@@ -29,7 +29,7 @@ export async function scaleDeployment(kc: KubeConfig, args: Args): Promise<boole
         await k8sApi.replaceNamespacedDeployment(name, namespace, deployment);
         return true;
     } catch (error) {
-        log('error scaleDeployment', error);
+        console.log('error scaleDeployment', error);
         return false;
     }
 }
