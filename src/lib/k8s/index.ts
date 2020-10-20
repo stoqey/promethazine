@@ -1,2 +1,2 @@
 export * from './k8s.config';
-export * from './scale.deployment';
+export * from './deployment';
