@@ -16,18 +16,23 @@
     "do": "mocha src/lib/do/*test.ts --full-trace",
     "k8s": "mocha src/lib/k8s/*test.ts --full-trace",
     "deploy": "mocha src/lib/k8s/deployment/*test.ts --full-trace",
-    "eslint": "eslint ./src --fix --ext=ts",
+    "eslint": "eslint ./src --fix --config=.mocharc.json",
     "prepublishOnly": "npm run build"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "yarn eslint"
-    ]
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
+  },
+  "prettier": {
+    "trailingComma": "all"
+  },
+  "lint-staged": {
+    "*.{ts}": [
+      "npm run build",
+      "tslint --project tsconfig.json -c tslint.commit.json --fix",
+      "prettier --write src/**/*.ts"
+    ]
   },
   "repository": {
     "type": "git",
@@ -56,17 +61,6 @@
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.0.3",
     "@types/lodash": "^4.14.150",
-    "@types/source-map-support": "^0.4.0",
-    "@typescript-eslint/eslint-plugin": "^3.4.0",
-    "@typescript-eslint/parser": "^3.4.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-loader": "^4.0.2",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-json": "^2.1.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-simple-import-sort": "^5.0.2",
-    "eslint-plugin-typescript": "^0.14.0",
     "husky": "^4.2.5",
     "lint-staged": "^10.1.7",
     "nodemon": "^2.0.4",
@@ -76,6 +70,10 @@
     "lodash": "^4.17.20",
     "mocha": "^8.2.0",
     "ts-node": "^9.0.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-config-standard": "^8.0.1",
+    "tslint-etc": "^1.13.7",
     "typescript": "^4.0.3"
   }
 }
