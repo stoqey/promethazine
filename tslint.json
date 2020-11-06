@@ -8,6 +8,11 @@
     "exclude": ["src/**/*.test.ts"]
   },
   "rules": {
+    "no-default-export": true,
+    "no-implicit-dependencies": [true],
+    "no-submodule-imports": false,
+    "no-relative-imports": true,
+    "export-name": false,
     "await-promise": [
       true,
       "Bluebird",
@@ -28,7 +33,6 @@
     "comment-format": false,
     "no-var-requires": false,
     "interface-name": false,
-    "no-implicit-dependencies": false,
     "max-classes-per-file": false,
     "no-duplicate-imports": false,
     "no-unused-expression": [true, "allow-fast-null-checks"],
