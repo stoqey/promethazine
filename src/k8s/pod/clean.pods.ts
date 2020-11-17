@@ -27,7 +27,7 @@ export const cleanPods = async (args: Args): Promise<boolean> => {
     );
     return true;
   } catch (error) {
-    log("Error executing", error);
+    log("Error executing clean pods", error);
     return false;
   }
 };
