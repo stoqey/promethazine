@@ -43,7 +43,7 @@ export const createDaemonset = async (
   }
 };
 
-interface IDaemonset {
+interface IDeleteDaemonset {
   name: string;
   namespace: string;
   kc: KubeConfig;
@@ -55,7 +55,9 @@ interface IDaemonset {
  * @param namespace: string
  * @param kc: KubeConfig
  */
-export const deleteDaemonset = async (args: IDaemonset): Promise<boolean> => {
+export const deleteDaemonset = async (
+  args: IDeleteDaemonset,
+): Promise<boolean> => {
   const { name, namespace, kc } = args;
   try {
     const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
