@@ -6,7 +6,8 @@ import { cleanPods } from "./clean.pods";
 
 let kubeconfig: KubeConfig = null as any;
 
-const fieldSelector = "status.phase=Pending";
+const labelSelector = "app=terminator";
+const fieldSelector = "";
 const namespace = "default";
 
 before((done) => {
@@ -22,6 +23,7 @@ describe("Pods", () => {
     const deletedPods = await cleanPods({
       kc: kubeconfig,
       fieldSelector,
+      labelSelector,
       namespace,
     });
 

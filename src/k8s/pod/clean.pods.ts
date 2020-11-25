@@ -6,6 +6,7 @@ interface Args {
   kc: KubeConfig;
   namespace: string;
   fieldSelector: string;
+  labelSelector?: string;
 }
 
 /**
@@ -14,7 +15,7 @@ interface Args {
  * @param args
  */
 export const cleanPods = async (args: Args): Promise<boolean> => {
-  const { kc, namespace, fieldSelector } = args;
+  const { kc, namespace, fieldSelector, labelSelector } = args;
 
   try {
     const exec = kc.makeApiClient(k8s.CoreV1Api);
@@ -24,6 +25,8 @@ export const cleanPods = async (args: Args): Promise<boolean> => {
       undefined,
       undefined,
       fieldSelector,
+      0,
+      labelSelector,
     );
     return true;
   } catch (error) {
